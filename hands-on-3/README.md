@@ -15,7 +15,10 @@
 Add a new tag to one of them
 `docker tag hello-go:multi hello-go:latest`
 
-6. Run the app to show it works.
+6. Inspect the image layers using dive
+`dive hello-go:single` vs `dive hello-go:multi`
+
+7. Run the app to show it works.
 Here we use `--rm` to cleanup after the containers exists.
 We also make use of port forwarding
 
