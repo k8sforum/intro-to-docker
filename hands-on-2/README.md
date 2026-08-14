@@ -2,7 +2,7 @@
 
 For this demo we pull the public alpine image directly — it doesn't require a custom Dockerfile, since no docker build step is used.
 
-1. Create a new volume `docker volume create app-data`
+1. Create a new volume `cd hands-on-2` and `docker volume create app-data`
 
 2. Write the content "hi" to a file in the volume `docker run -v app-data:/data alpine sh -c "echo hi > /data/f.txt"`
 

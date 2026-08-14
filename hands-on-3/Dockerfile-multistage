@@ -1,0 +1,25 @@
+# Multi-stage build — the Go toolchain only exists in the "builder"
+# stage. The final image just contains the compiled binary.
+
+# Stage 1: build
+FROM golang:1.22 AS builder
+
+WORKDIR /app
+
+COPY src/go.mod .
+COPY src/main.go .
+
+# without this, the binary can end up dynamically linked against glibc,
+# which doesn't exist on Alpine (musl-based) and it'll fail to run
+RUN CGO_ENABLED=0 go build -o server .
+
+# Stage 2: run
+FROM alpine:3.19
+
+WORKDIR /app
+
+COPY --from=builder /app/server .
+
+EXPOSE 8080
+
+CMD ["./server"]

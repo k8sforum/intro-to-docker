@@ -1,0 +1,15 @@
+# Single-stage build — everything, including the full Go toolchain,
+# ends up in the final image.
+
+FROM golang:1.22
+
+WORKDIR /app
+
+COPY src/go.mod .
+COPY src/main.go .
+
+RUN go build -o server .
+
+EXPOSE 8080
+
+CMD ["./server"]
