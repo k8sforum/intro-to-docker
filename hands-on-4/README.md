@@ -7,3 +7,7 @@ Otherwise this is for self-study
 
 Show how to use busybox and docker exec to run interactive shell commands.
 Also show that you cannot connect to a slimline container this way
+
+## Networking
+
+Create containers on different networks and show that they cannot talk to each other
